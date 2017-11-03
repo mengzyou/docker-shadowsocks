@@ -1,0 +1,18 @@
+version: '2'
+
+services:
+# ss-proxy
+  ss-proxy:
+    image: shadowsocks:python
+    command: sslocal -s 104.224.129.44 -p 8388 -b 0.0.0.0 -l 3080 -k 80pOmFEGlV -t 600 --fast-open
+    restart: unless-stopped
+    mem_limit: 64m
+    ulimits:
+      nofile:
+        soft: 51200
+        hard: 51200
+    network_mode: host
+    cap_add:
+          - NET_ADMIN
+  #    ports:
+  #      - 2080:2080
